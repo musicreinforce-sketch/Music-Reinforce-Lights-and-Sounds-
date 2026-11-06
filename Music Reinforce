@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Music Reinforce Lights and Sounds</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;800&family=Figtree:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --stage:#120B26; --deep:#1C1238; --panel:#241848; --ink:#F4EFFF; --muted:#B9AEDB;
+  --amber:#FFB547; --pink:#FF4D94; --cyan:#34E8D8;
+  --display:'Unbounded','Arial Black',system-ui,sans-serif;
+  --body:'Figtree',system-ui,-apple-system,'Segoe UI',sans-serif;
+  color-scheme:dark; box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--stage);color:var(--ink);font:400 1.05rem/1.6 var(--body)}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--amber);outline-offset:3px}
+.wrap{width:min(1100px,100% - 2.5rem);margin-inline:auto}
+
+/* hero */
+.hero{position:relative;min-height:88vh;display:flex;align-items:flex-end;overflow:hidden;background:radial-gradient(120% 80% at 50% 0%,#2A1B5C 0%,var(--stage) 70%)}
+#stage{position:absolute;inset:0;width:100%;height:100%}
+.hero .wrap{position:relative;padding:6rem 0 3.5rem}
+.logo{display:block;width:clamp(110px,24vw,180px);height:auto;aspect-ratio:1;border-radius:50%;margin:0 0 2rem;box-shadow:0 0 0 3px rgba(244,239,255,.15),0 10px 40px rgba(0,0,0,.5)}
+h1{font:800 clamp(2.3rem,8.5vw,5.8rem)/1 var(--display);margin:0 0 1.4rem;max-width:12ch;text-wrap:balance}
+.lede{max-width:34rem;font-size:1.2rem;color:var(--ink);margin:0 0 2rem}
+.btns{display:flex;flex-wrap:wrap;gap:.8rem}
+.btn{display:inline-block;padding:.9rem 1.5rem;border-radius:999px;font-weight:600;text-decoration:none;border:2px solid var(--amber);transition:transform .15s}
+.btn.main{background:var(--amber);color:#1A1030}
+.btn:hover{transform:translateY(-2px)}
+
+/* desk */
+.desk{background:var(--deep);padding:4rem 0}
+h2{font:800 clamp(1.6rem,4vw,2.5rem)/1.1 var(--display);margin:0 0 .8rem;text-wrap:balance}
+.desk p.sub{color:var(--muted);max-width:36rem;margin:0 0 2.2rem}
+.board{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;background:var(--panel);border-radius:18px;padding:1.8rem}
+.chan label{display:flex;justify-content:space-between;font-weight:600;margin-bottom:.6rem}
+.chan output{color:var(--amber);font-variant-numeric:tabular-nums}
+input[type=range]{width:100%;accent-color:var(--amber);height:2rem}
+.moods{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.6rem}
+.moods button{font:600 .95rem var(--body);color:var(--ink);background:transparent;border:2px solid var(--muted);border-radius:999px;padding:.55rem 1.1rem;cursor:pointer}
+.moods button[aria-pressed=true]{border-color:var(--ink);background:var(--ink);color:#1A1030}
+
+/* services */
+.services{padding:5rem 0}
+.rows{display:grid;gap:1.5rem;grid-template-columns:1.5fr 1fr 1fr;margin-top:2.2rem}
+.svc{padding:1.8rem;border-radius:22px 22px 22px 6px}
+.svc h3{font:500 1.2rem/1.2 var(--display);margin:0 0 .8rem}
+.svc p{margin:0}
+.s1{background:var(--amber);color:#1A1030}
+.s2{background:var(--pink);color:#1A1030;border-radius:6px 22px 22px 22px}
+.s3{background:var(--cyan);color:#1A1030}
+.what{margin-top:2.5rem;columns:2 16rem;column-gap:3rem;color:var(--muted)}
+.what p{margin:0 0 1rem;break-inside:avoid}
+.what strong{color:var(--ink)}
+
+/* contact */
+.contact{background:var(--deep);padding:4.5rem 0 3rem;text-align:left}
+.contact p{color:var(--muted)}
+.inq{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.1rem;margin:2rem 0 1.5rem;background:var(--panel);padding:1.8rem;border-radius:18px}
+.inq .full{grid-column:1/-1}
+.inq label{display:block;font-weight:600;margin-bottom:.4rem}
+.inq input,.inq select,.inq textarea{width:100%;font:inherit;color:var(--ink);background:var(--stage);border:2px solid #3A2C6B;border-radius:10px;padding:.8rem}
+.inq textarea{resize:vertical}
+.inq button{cursor:pointer;font:600 1rem var(--body)}
+#st{margin:.8rem 0 0;color:var(--amber);min-height:1.6em}
+.alt a{text-decoration:underline}
+.flogo{display:block;width:200px;max-width:60%;height:auto;border-radius:10px;margin:0 0 1rem}
+footer{padding:1.5rem 0 2rem;color:var(--muted);font-size:.9rem;background:var(--deep)}
+
+@media (max-width:760px){.rows{grid-template-columns:1fr}.hero{min-height:92vh}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <canvas id="stage" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <img class="logo" alt="Music Reinforce Lights and Sounds logo" width="180" height="180" src="logo-round.jpg">
+    <h1>Make every seat the best seat.</h1>
+    <p class="lede">Concert-grade sound and stage lighting for weddings, gigs, churches, festivals and company nights. We bring the rig, build it, run it and pack it away.</p>
+    <div class="btns">
+      <a class="btn main" href="#contact">Book your date</a>
+      <a class="btn" href="#desk">Play with the desk</a>
+    </div>
+  </div>
+</header>
+
+<section class="desk" id="desk">
+  <div class="wrap">
+    <h2>Run the show yourself</h2>
+    <p class="sub">Slide the faders and watch the stage above respond. This is the kind of control our crew has over your room on the night.</p>
+    <div class="board">
+      <div class="chan"><label for="vol">Sound level <output id="volO">70</output></label><input id="vol" type="range" min="0" max="100" value="70"></div>
+      <div class="chan"><label for="bri">Light intensity <output id="briO">80</output></label><input id="bri" type="range" min="0" max="100" value="80"></div>
+      <div class="chan"><label for="haze">Haze <output id="hazeO">40</output></label><input id="haze" type="range" min="0" max="100" value="40"></div>
+    </div>
+    <div class="moods" role="group" aria-label="Lighting mood">
+      <button type="button" data-mood="0" aria-pressed="true">Neon night</button>
+      <button type="button" data-mood="1" aria-pressed="false">Golden hour</button>
+      <button type="button" data-mood="2" aria-pressed="false">Ice club</button>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="wrap">
+    <h2>What we bring</h2>
+    <div class="rows">
+      <article class="svc s1"><h3>Sound reinforcement</h3><p>Line-array and monitor systems tuned to your venue, so vocals stay clear at the back and the front row still keeps its hearing.</p></article>
+      <article class="svc s2"><h3>Stage lighting</h3><p>Moving heads, washes and LED bars programmed to your set list.</p></article>
+      <article class="svc s3"><h3>Full production</h3><p>Rigging, staging, power and a crew on site from load-in to load-out.</p></article>
+    </div>
+    <div class="what">
+      <p><strong>Live bands and DJs.</strong> Mixing desks, stage monitors and engineers who know how to make a small room sound big.</p>
+      <p><strong>Weddings and private events.</strong> Speeches you can hear, a dance floor that glows, and nothing ugly on show.</p>
+      <p><strong>Churches and community halls.</strong> Permanent installs and weekly setups that volunteers can run with confidence.</p>
+      <p><strong>Corporate and festivals.</strong> Presentations, launches and multi-stage sites with backup gear always on standby.</p>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <h2>Tell us the date and the room</h2>
+    <p>Send an inquiry and we’ll reply with a plan and a clear quote.</p>
+    <form id="inq" class="inq" novalidate>
+      <div><label for="n">Your name</label><input id="n" name="name" autocomplete="name" required></div>
+      <div><label for="e">Email or phone</label><input id="e" name="contact" autocomplete="email" required></div>
+      <div><label for="t">Type of event</label><select id="t" name="type"><option>Wedding or private party</option><option>Live band or DJ night</option><option>Church or community hall</option><option>Corporate event</option><option>Festival or outdoor show</option><option>Something else</option></select></div>
+      <div><label for="d">Event date</label><input id="d" name="date" type="date"></div>
+      <div><label for="v">Venue and city</label><input id="v" name="venue"></div>
+      <div><label for="g">Number of guests</label><input id="g" name="guests" inputmode="numeric" placeholder="For example, 150"></div>
+      <div class="full"><label for="s">What do you need?</label><textarea id="s" name="need" rows="4" placeholder="Sound, lights, a DJ, a stage…"></textarea></div>
+      <div class="full"><button class="btn main" type="submit">Send inquiry</button><p id="st" role="status"></p></div>
+    </form>
+    <p class="alt">Prefer to talk? Email <a href="mailto:musicreinforce@gmail.com">musicreinforce@gmail.com</a> or call (000) 000-0000.</p>
+  </div>
+</section>
+<footer><div class="wrap"><img class="flogo" alt="Music Reinforce Lights and Sounds" width="200" height="121" src="logo-wordmark.jpg">© <span id="yr">2026</span> Music Reinforce Lights and Sounds</div></footer>
+
+<script>
+(function(){
+  var c=document.getElementById('stage'),x=c.getContext('2d');
+  var moods=[['#FF4D94','#34E8D8','#8A5CFF'],['#FFB547','#FF7A3D','#FFE08A'],['#34E8D8','#7CC4FF','#E6F7FF']];
+  var S={vol:.7,bri:.8,haze:.4,mood:0},W,H,t=0;
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function size(){var d=Math.min(window.devicePixelRatio||1,2);W=c.clientWidth;H=c.clientHeight;c.width=W*d;c.height=H*d;x.setTransform(d,0,0,d,0,0)}
+  function hex(h,a){var n=parseInt(h.slice(1),16);return 'rgba('+(n>>16)+','+((n>>8)&255)+','+(n&255)+','+a+')'}
+  function draw(){
+    x.clearRect(0,0,W,H);x.globalCompositeOperation='lighter';
+    var cols=moods[S.mood],n=6;
+    for(var i=0;i<n;i++){
+      var ox=W*(i+.5)/n, sw=Math.sin(t*.0009*(1+i*.15)+i*1.7)*.55;
+      var len=H*1.05, spread=.05+S.haze*.12, ex=ox+Math.sin(sw)*len, ey=len*Math.cos(sw);
+      var ang=Math.atan2(ey,ex-ox), g=x.createLinearGradient(ox,0,ex,ey);
+      g.addColorStop(0,hex(cols[i%3],.55*S.bri));g.addColorStop(1,hex(cols[i%3],0));
+      x.fillStyle=g;x.beginPath();x.moveTo(ox,0);
+      x.lineTo(ox+Math.cos(ang-spread)*len*1.2,Math.sin(ang-spread)*len*1.2);
+      x.lineTo(ox+Math.cos(ang+spread)*len*1.2,Math.sin(ang+spread)*len*1.2);x.closePath();x.fill();
+    }
+    var bars=Math.max(18,Math.floor(W/28)),bw=W/bars;
+    for(var b=0;b<bars;b++){
+      var beat=reduce?.5:(Math.sin(t*.004+b*.6)*.5+.5)*(Math.sin(t*.0017+b*.21)*.5+.5);
+      var h=(.08+beat*.5)*H*.5*S.vol+4;
+      x.fillStyle=hex(cols[b%3],.5);
+      x.fillRect(b*bw+bw*.18,H-h,bw*.64,h);
+    }
+    x.globalCompositeOperation='source-over';
+  }
+  function loop(ts){t=ts;draw();if(!reduce)requestAnimationFrame(loop)}
+  size();window.addEventListener('resize',function(){size();draw()});
+  requestAnimationFrame(loop);
+  [['vol','volO'],['bri','briO'],['haze','hazeO']].forEach(function(p){
+    var el=document.getElementById(p[0]),o=document.getElementById(p[1]);
+    el.addEventListener('input',function(){S[p[0]]=el.value/100;o.textContent=el.value;if(reduce)draw()});
+  });
+  document.querySelectorAll('.moods button').forEach(function(b){
+    b.addEventListener('click',function(){
+      S.mood=+b.dataset.mood;
+      document.querySelectorAll('.moods button').forEach(function(o){o.setAttribute('aria-pressed',o===b)});
+      if(reduce)draw();
+    });
+  });
+  document.getElementById('yr').textContent=new Date().getFullYear();
+
+  /* inquiry form */
+  var FORM_ENDPOINT='';
+  var TO='musicreinforce@gmail.com';
+  var f=document.getElementById('inq'),st=document.getElementById('st');
+  f.addEventListener('submit',function(ev){
+    ev.preventDefault();
+    var d={};new FormData(f).forEach(function(v,k){d[k]=String(v).trim()});
+    if(!d.name||!d.contact){st.textContent='Please add your name and an email or phone number.';return}
+    var body='Name: '+d.name+'\nContact: '+d.contact+'\nEvent type: '+d.type+'\nDate: '+(d.date||'Not set')+'\nVenue: '+(d.venue||'Not set')+'\nGuests: '+(d.guests||'Not set')+'\n\n'+(d.need||'');
+    if(FORM_ENDPOINT){
+      st.textContent='Sending…';
+      fetch(FORM_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(d)})
+        .then(function(r){if(!r.ok)throw 0;f.reset();st.textContent='Thanks, we’ve got your inquiry and will reply soon.'})
+        .catch(function(){st.textContent='Something went wrong. Please email '+TO+' instead.'});
+    }else{
+      window.location.href='mailto:'+TO+'?subject='+encodeURIComponent('Inquiry from '+d.name)+'&body='+encodeURIComponent(body);
+      st.textContent='Your email app should open with your details. If it doesn’t, write to '+TO+'.';
+    }
+  });
+})();
+</script>
+</body>
+</html>
